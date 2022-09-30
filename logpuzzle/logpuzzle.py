@@ -20,7 +20,7 @@ Here's what a puzzle url looks like:
 """
 
 def url_sort_key(url):
-  match = re.search(r'-(\w+)-(\w+).\w+', url)
+  match = re.search(r'-(\w+)-(\w+)\.\w+', url)
   if match:
     return match.group(2)
   else:
