@@ -8,6 +8,7 @@
 
 import sys
 import re
+import os
 
 """Baby Names exercise
 
@@ -57,6 +58,7 @@ def extract_names(filename):
   
   for name in sorted(rank.keys()):
     names.append(name + ' ' + rank[name])
+  print (names[0])
     
   return names
 
@@ -77,11 +79,21 @@ def main():
     summary = True
     del args[0]
 
+  if not os.path.exists('babynamestest'):
+     os.makedirs('babynamestest')
+  ans = open(os.path.join('babynamestest', 'babyname.html'), 'w') 
   # +++your code here+++
   for files in args:
     names = extract_names(files)
     for i in names:
-      print(i,end='\n')
+      ans.write(i + '\n')
+      #print(i,end='\n')
+  #print (names[0]+names[1])
+  ans.close()
+  ans=open(os.path.join('babynamestest', 'babyname.html'), 'r')
+  for i in ans:
+    print(i, end='')
+
   # For each filename, get the names, then either print the text output
   # or write it to a summary file
   
