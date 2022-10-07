@@ -10,12 +10,34 @@ import sys
 import re
 import os
 import shutil
-import commands
+#import commands
 
 """Copy Special exercise
 """
 
 # +++your code here+++
+def get_special_paths(dirname):
+  result = []
+  paths = os.listdir(dirname)
+  for i in paths:
+    match = re.search(r'__(\w+)__', i)
+    if match:
+      result.append(os.path.abspath(os.path.join(dirname, i)))
+  return result
+
+
+def copy_to(paths, to_dir):
+  if not os.path.exists(to_dir):
+    os.mkdir(to_dir)
+  for path in paths:
+    fname = os.path.basename(path)
+    shutil.copy(path, os.path.join(to_dir, fname))
+
+
+def zip_to(paths, zipfile):
+  cmd = 'zip -j ' + zipfile + ' ' + ' '.join(paths)
+  print(cmd)
+  os.system(cmd)
 # Write functions and modify main() to call them
 
 
@@ -50,6 +72,17 @@ def main():
 
   # +++your code here+++
   # Call your functions
+
+  paths = []
+  for dirname in args:
+    paths.extend(get_special_paths(dirname))
+
+  if todir:
+    copy_to(paths, todir)
+  elif tozip:
+    zip_to(paths, tozip)
+  else:
+    print ('\n'.join(paths))
   
 if __name__ == "__main__":
   main()
