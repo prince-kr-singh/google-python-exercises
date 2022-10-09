@@ -81,7 +81,7 @@ def main():
 
   if not os.path.exists('babynamestest'):
      os.makedirs('babynamestest')
-  ans = open(os.path.join('babynamestest', 'babyname.html'), 'w') 
+  ans = open(os.path.join('babynamestest', 'babyname.txt'), 'w') 
   # +++your code here+++
   for files in args:
     names = extract_names(files)
@@ -90,7 +90,7 @@ def main():
       #print(i,end='\n')
   #print (names[0]+names[1])
   ans.close()
-  ans=open(os.path.join('babynamestest', 'babyname.html'), 'r')
+  ans=open(os.path.join('babynamestest', 'babyname.txt'), 'r')
   for i in ans:
     print(i, end='')
 

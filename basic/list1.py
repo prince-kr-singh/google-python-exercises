@@ -38,19 +38,19 @@ def match_ends(words):
 # before combining them.
 def front_x(words):
   x_list = []
-  for i in words:
-    if i[0]=='x':
-      x_list.append(i)
-      words.remove(i)
-  final = sorted(x_list)+sorted(words)
-  return final
+  words = sorted(words)
+  while(words[-1][0]=='x'):
+    x_list.append(words.pop())
+  x_list.reverse()
+  x_list.extend(words)
+  return x_list
 
 
 
 # C. sort_last
 # Given a list of non-empty tuples, return a list sorted in increasing
 # order by the last element in each tuple.
-# e.g. [(1, 7), (1, 3), (3, 4, 5), (2, 2)] yields
+# e.g. [(1, 7), (1, 3), (3, 4, 5), (2, 2)] yieldss
 # [(2, 2), (1, 3), (3, 4, 5), (1, 7)]
 # Hint: use a custom key= function to extract the last element form each tuple.
 def last(i):
